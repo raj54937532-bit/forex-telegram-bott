@@ -1,4 +1,0 @@
-python-binance
-python-telegram-bot==20.3
-matplotlib
-python-dotenv
