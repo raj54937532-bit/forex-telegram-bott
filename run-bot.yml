@@ -1,0 +1,35 @@
+name: Run Trading Bot
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"   # Har 1 minute run kare
+  workflow_dispatch:         # Manual run bhi possible
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Set Environment Variables
+      run: |
+        echo "BINANCE_API_KEY=${{ secrets.BINANCE_API_KEY }}" >> $GITHUB_ENV
+        echo "BINANCE_API_SECRET=${{ secrets.BINANCE_API_SECRET }}" >> $GITHUB_ENV
+        echo "TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}" >> $GITHUB_ENV
+        echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> $GITHUB_ENV
+
+    - name: Run Bot
+      run: |
+        python main.py
