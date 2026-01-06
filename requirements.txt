@@ -1,0 +1,6 @@
+python-binance==1.0.16
+python-telegram-bot==20.3
+pandas==2.1.2
+matplotlib==3.8.1
+pytz==2026.1
+numpy==1.26.1
