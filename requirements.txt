@@ -1,5 +1,0 @@
-python-binance==1.0.15
-python-telegram-bot==20.3
-pandas==2.1.1
-matplotlib==3.8.0
-asyncio==3.4.3
